@@ -13,7 +13,7 @@ class MoviesRepositoryTest extends AnyFeatureSpec with GivenWhenThen {
       Given(s"A file named $fileName located in the resources folder")
       
       When("The MovieRepository reads it")
-      val readMovies:List[Movie] = MoviesRepository.readMovies(fileName)
+      val readMovies:List[Movie] = MoviesRepository().readMovies(fileName)
       
       Then("It creates a non empty list")
       assert(readMovies.nonEmpty) 

@@ -5,8 +5,8 @@ import domain.movie.Movie
 import scala.io.Source
 import scala.util.{Try, Using}
 
-object MoviesRepository {
-  def readMovies(fileName: String): List[Movie] = {
+class MoviesRepository :
+  def readMovies(fileName: String): List[Movie] =
     Using(Source.fromResource(fileName)) {
       _.getLines()
         .toList
@@ -20,6 +20,4 @@ object MoviesRepository {
       List[Movie]()
     )
 
-  }
-
-}
+object MoviesRepository

@@ -15,7 +15,7 @@ class CartRepositoryTest extends AnyFeatureSpec with GivenWhenThen {
       Given(s"A cart with a price ${cartToTest.totalPrice} ")
       
       When("The CartRepository writes it")
-      val maybeSuccess = CartRepository.writePrice(cartToTest, fileName)
+      val maybeSuccess = CartRepository().writePrice(cartToTest, fileName)
       
       Then("It creates a file successfully")
       assert(maybeSuccess.isSuccess)
