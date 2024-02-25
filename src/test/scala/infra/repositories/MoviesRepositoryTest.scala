@@ -1,6 +1,7 @@
 package infra.repositories
 
 import domain.movie.Movie
+import infra.FileIO.{FileReader, FileWriter}
 import org.scalatest.GivenWhenThen
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.funspec.AnyFunSpec
@@ -13,7 +14,7 @@ class MoviesRepositoryTest extends AnyFeatureSpec with GivenWhenThen {
       Given(s"A file named $fileName located in the resources folder")
       
       When("The MovieRepository reads it")
-      val readMovies:List[Movie] = MoviesRepository().readMovies(fileName)
+      val readMovies:List[Movie] = MoviesRepository(FileReader(fileName)).readMovies()
       
       Then("It creates a non empty list")
       assert(readMovies.nonEmpty) 

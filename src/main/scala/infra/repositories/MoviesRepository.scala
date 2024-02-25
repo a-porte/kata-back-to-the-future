@@ -2,22 +2,11 @@ package infra.repositories
 
 import domain.movie.Movie
 
-import scala.io.Source
-import scala.util.{Try, Using}
+import infra.abstractions.Readable
 
-class MoviesRepository :
-  def readMovies(fileName: String): List[Movie] =
-    Using(Source.fromResource(fileName)) {
-      _.getLines()
-        .toList
-        .filterNot(
-          _.isEmpty
-        )
-        .map(
-          Movie(_)
-        )
-    }.getOrElse(
-      List[Movie]()
-    )
+class MoviesRepository(reader: Readable) :
+  def readMovies(): List[Movie] =
+    reader.readMovies()
+
 
 object MoviesRepository

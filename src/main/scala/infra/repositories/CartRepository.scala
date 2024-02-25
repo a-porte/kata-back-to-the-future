@@ -1,16 +1,13 @@
 package infra.repositories
 
 import domain.cart.Cart
+import infra.abstractions.Writable
 
 import scala.util.Try
 
 
-class CartRepository:
-  def writePrice(cart: Cart, inFileName: String): Try[Unit] =
-    val path = os.Path
-
-    Try(os.write(os.pwd / inFileName, cart.totalPrice.toString))
-
-  
+class CartRepository(writer: Writable):
+  def writePrice(price: Int): Try[Unit] =
+    writer.writePrice(price)
 
 object CartRepository

@@ -2,6 +2,7 @@ package infra.repositories
 
 import domain.CartHolder
 import domain.movie.Movie
+import infra.FileIO.FileWriter
 import org.scalatest.GivenWhenThen
 import org.scalatest.featurespec.AnyFeatureSpec
 import org.scalatest.funspec.AnyFunSpec
@@ -15,7 +16,7 @@ class CartRepositoryTest extends AnyFeatureSpec with GivenWhenThen {
       Given(s"A cart with a price ${cartToTest.totalPrice} ")
       
       When("The CartRepository writes it")
-      val maybeSuccess = CartRepository().writePrice(cartToTest, fileName)
+      val maybeSuccess = CartRepository(FileWriter(fileName)).writePrice(cartToTest.totalPrice)
       
       Then("It creates a file successfully")
       assert(maybeSuccess.isSuccess)
