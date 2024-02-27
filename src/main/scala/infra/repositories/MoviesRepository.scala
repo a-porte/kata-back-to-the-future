@@ -1,11 +1,12 @@
 package infra.repositories
 
 import domain.movie.Movie
-
 import infra.abstractions.Readable
 
+import scala.collection.immutable.AbstractSeq
+
 class MoviesRepository(reader: Readable) :
-  def readMovies(): List[Movie] =
+  def readMovies(): AbstractSeq[Movie] =
     reader.readMovies()
 
 

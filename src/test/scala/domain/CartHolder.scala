@@ -8,9 +8,9 @@ object CartHolder {
   private val fullSagaWithDuplicate = fullSaga :+ Movie("Back to the Future 1")
   private val sagaWithCopyCat = fullSaga :+ Movie("Rick and Morty")
 
-  val cartFull: Cart = Cart(fullSaga)
-  val cartWithDuplicate: Cart = Cart(fullSagaWithDuplicate)
-  val cartWithCopyCat: Cart = Cart(sagaWithCopyCat)
+  val cartFull: Cart = CartApplication.getCartBuildingFun(fullSaga, CartApplication.getPricingFun)
+  val cartWithDuplicate: Cart = CartApplication.getCartBuildingFun(fullSagaWithDuplicate, CartApplication.getPricingFun)
+  val cartWithCopyCat: Cart = CartApplication.getCartBuildingFun(sagaWithCopyCat, CartApplication.getPricingFun)
 
 
 }
