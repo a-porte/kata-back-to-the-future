@@ -14,10 +14,10 @@ import scala.collection.immutable.{AbstractSeq, HashMap}
 class PricingServiceTest extends AnyFeatureSpec with GivenWhenThen {
   Feature("We want to price a cart with the rules given in the kata") {
     Scenario("One movie costs €20 except for a Back to the future sage (15€), plus a discount exists") {
-      val inputFile = "input.txt"
+      val inputFile = "inputTest.txt"
       val pricingService = PricingService(
-        CartApplication.getMovieService("inputTest.txt"),
-        CartApplication.getCartService("outputTest.txt"),
+        CartApplication.getMovieRepo(inputFile),
+        CartApplication.getCartRepo("outputTest.txt"),
         CartApplication.getPricingFun,
         CartApplication.getCartBuildingFun)
 
@@ -27,7 +27,7 @@ class PricingServiceTest extends AnyFeatureSpec with GivenWhenThen {
 
       Then("it gives the right cost and writes the output file accordingly")
       pricingService.writePrice()
-      assert(pricingService.cart.totalPrice == 56)
+      assert(pricingService.priceCart  == 56)
       assert(os.exists(os.pwd / "outputTest.txt"))
     }
 

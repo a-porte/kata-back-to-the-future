@@ -11,14 +11,14 @@ import scala.collection.immutable.{AbstractSeq, HashMap}
 object CartApplication {
   println("Creating PricingService, reading input file and pricing the cart on the fly")
   private val pricingService = PricingService(
-    getMovieService(),
-    getCartService(),
+    getMovieRepo(),
+    getCartRepo(),
     getPricingFun,
     getCartBuildingFun)
-  
+
   println("Writing cart's price")
   pricingService.writePrice()
-  
+
 
   def getPricingFun: AbstractSeq[Movie] => Int = {
     (moviesSeq: AbstractSeq[Movie]) => {
@@ -50,10 +50,10 @@ object CartApplication {
       )
 
 
-  def getCartService(outputFileName:String = "output.txt"): CartService =
-    CartService(CartRepository(FileWriter(outputFileName)))
+  def getCartRepo(outputFileName: String = "output.txt"): CartRepository =
+    CartRepository(FileWriter(outputFileName))
 
-  def getMovieService(inputFileName: String = "input.txt"): MovieService =
-    MovieService(MoviesRepository(FileReader(inputFileName)))
+  def getMovieRepo(inputFileName: String = "input.txt"): MoviesRepository =
+    MoviesRepository(FileReader(inputFileName))
 
 }
