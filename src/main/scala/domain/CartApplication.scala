@@ -9,16 +9,19 @@ import infra.repositories.{CartRepository, MoviesRepository}
 import scala.collection.immutable.{AbstractSeq, HashMap}
 
 object CartApplication {
-  println("Creating PricingService, reading input file and pricing the cart on the fly")
-  private val pricingService = PricingService(
-    getMovieRepo(),
-    getCartRepo(),
-    getPricingFun,
-    getCartBuildingFun)
+  @main def main(): Unit ={
+    println("Creating PricingService, reading input file and pricing the cart on the fly")
+    val pricingService = PricingService(
+      getMovieRepo(),
+      getCartRepo(),
+      getPricingFun,
+      getCartBuildingFun)
 
-  println("Writing cart's price")
-  pricingService.writePrice()
+    println("Writing cart's price")
+    pricingService.writePrice()
 
+  }
+  
 
   def getPricingFun: AbstractSeq[Movie] => Int = {
     (moviesSeq: AbstractSeq[Movie]) => {
